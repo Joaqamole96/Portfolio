@@ -2,6 +2,7 @@
     /* Border Box */
     --margin: 2.5vmin;
     --margin_no-top: 0 2.5vmin 2.5vmin;
+    --margin_half: 1.25vmin;
     --padding: 2.5vmin;
 
     /* Font Families */
@@ -100,10 +101,10 @@ main {
     .profilepicture {
         width: 50%;
         height: auto;
-        padding: var(--margin);
+        padding: var(--padding);
     }
 
-    .profilecontrols {
+    .profileControls {
         width: 50%;
         display: flex;
         flex-direction: column;
@@ -138,7 +139,7 @@ main {
         }
     }
 
-    .profilebutton {
+    .profileButton {
         padding: 1vmin 2vmin;
     }
 
@@ -152,39 +153,46 @@ main {
         align-items: center;
     }
 
-    .playerCovers {
-        width: 100%;
+    .artistCatalog {
+        width: auto;
+        height: auto;
         display: flex;
         flex-direction: column;
+        align-items: center;
+    }
+
+    .songCatalog {
+        width: 50%;
+        height: auto;
+        display: flex;
         align-items: center;
         justify-content: center;
     }
     
-    .prevCover {
+    .prevSongCover {
         width: 16.5%;
         position: absolute;
         z-index: -1;
         height: auto;
         margin-right: 50vmin;
-        padding: 1vmin;
+        padding: var(--padding);
         opacity: 0.5;
     }
 
-    .currentCover {
-        width: 50%;
-        height: auto;
+    .currentSongCover {
+        width: 50vmin;
         margin: var(--margin);
         border: groove rgba(0, 0, 0, 0.25);
-        padding: 1vmin;
+        padding: var(--padding);
     }
     
-    .nextCover {
+    .nextSongCover {
         width: 16.5%;
         position: absolute;
         z-index: -1;
         height: auto;
         margin-left: 50vmin;
-        padding: 1vmin;
+        padding: var(--padding);
         opacity: 0.5;
     }
 
@@ -204,16 +212,17 @@ main {
         margin: var(--margin_no-top);
     }
 
-    .playercontrols {
+    .playerControls {
         margin: var(--margin);
         display: flex;
-        width: 50%;
-        justify-content: space-between;
+        width: 100%;
+        position: relative;
     }
 
-    .playbutton, .nextbutton, .prevbutton, .switchbutton {
+    .prevArtistButton, .prevSongButton, .nextSongButton, .nextArtistButton, .playButton {
         padding: 1vmin 2vmin;
         font-size: var(--font-size_n);
+        margin: var(--margin_half);
     }
     
     /*--------------------------------------------------*/

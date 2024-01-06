@@ -26,9 +26,9 @@
     <main>
         <div class="prv profile">
             <img class="profilepicture" src="resources/images/picture1.jpg" alt="pogi">
-            <div class="profilecontrols">
+            <div class="profileControls">
                 <div class="salutation">Welcome to my website ^^</div>
-                <button class="btn profilebutton">Hi</button>
+                <button class="btn profileButton">Hi</button>
             </div>
         </div>
 
@@ -37,22 +37,29 @@
         <div class="prv gallery"></div>
 
         <div class="prv music">
-            <div class="playerCovers">
-                <img class="prevCover" id="prevCover" alt="">
-                <img class="currentCover" id="currentCover" alt="Cover Picture">
-                <img class="nextCover" id="nextCover" alt="">
+            <div class="artistCatalog">
+                <button class="btn prevArtistButton" id="prevArtistButton">Prev. Artist</button>
+                <div class="songCatalog">
+                    <img class="prevSongCover" id="prevSongCover" alt="">
+                    <button class="btn prevSongButton" id="prevSongButton">Prev. Song</button>
+                    <div>
+                        <img class="currentSongCover" id="currentSongCover" alt="Cover Picture">
+                    </div>
+                    <button class="btn nextSongButton" id="nextSongButton">Next Song</button>
+                    <img class="nextSongCover" id="nextSongCover" alt="">
+                </div>
+                <button class="btn nextArtistButton" id="nextArtistButton">Next Artist</button>
             </div>
+            
             <b class="musicStatus" id="musicStatus"> Currently Playing: </b>
             <div class="currentMusic" id="currentMusic"></div>
             <audio class="player" id="player">
                 <source src="resources/music/Sino.mp3" type="audio/mp3">
                 Your browser does not support the audio element.
             </audio>
+
             <div class="playercontrols">
-                <button class="btn prevbutton" id="prevbutton">&Lt;</button>
-                <button class="btn playbutton" id="playbutton">⏯︎</button>
-                <button class="btn nextbutton" id="nextbutton">&Gt;</button>
-                <button class="btn switchbutton" id="switchbutton">Switch Artist</button>
+                <button class="btn playButton" id="playButton">Play</button>
             </div>
         </div>
     </main>
@@ -75,17 +82,18 @@
 
         var player = document.getElementById('player');
 
-        var prevButton = document.getElementById('prevbutton');
-        var playButton = document.getElementById('playbutton');
-        var nextButton = document.getElementById('nextbutton');
-        var switchButton = document.getElementById('switchbutton');
+        var prevArtistButton = document.getElementById('prevArtistButton');
+        var prevSongButton = document.getElementById('prevSongButton');
+        var nextSongButton = document.getElementById('nextSongButton');
+        var nextArtistButton = document.getElementById('nextArtistButton');
+        var playButton = document.getElementById('playButton');
 
         var musicStatus = document.getElementById('musicStatus');
         var currentMusic = document.getElementById('currentMusic');
         
-        var prevCover = document.getElementById('prevCover');
-        var currentCover = document.getElementById('currentCover');
-        var nextCover = document.getElementById('nextCover');
+        var prevSongCover = document.getElementById('prevSongCover');
+        var currentSongCover = document.getElementById('currentSongCover');
+        var nextSongCover = document.getElementById('nextSongCover');
 
         var songList = [
             ["Ilaw Sa Daan", "Mundo", "Sino", "Come Inside of My Heart", "Where Have You Been, My Disco"],
@@ -106,14 +114,14 @@
             else songListIndex = 0;
 
             player.src = "resources/music/" + songList[artistIndex][songListIndex] + ".mp3";
-            prevCover.src = "resources/music/" + songList[artistIndex][songListIndex - 1] + ".jpg";
-            currentCover.src = "resources/music/" + songList[artistIndex][songListIndex] + ".jpg";
-            nextCover.src = "resources/music/" + songList[artistIndex][songListIndex + 1] + ".jpg";
+            prevSongCover.src = "resources/music/" + songList[artistIndex][songListIndex - 1] + ".jpg";
+            currentSongCover.src = "resources/music/" + songList[artistIndex][songListIndex] + ".jpg";
+            nextSongCover.src = "resources/music/" + songList[artistIndex][songListIndex + 1] + ".jpg";
             player.load();
 
             musicStatus.textContent = "Selected: ";
             currentMusic.textContent = songList[artistIndex][songListIndex];
-            playButton.textContent = "⏯︎";
+            playButton.textContent = "Play";
         }
 
         function prevSong() {
@@ -121,22 +129,22 @@
             else songListIndex = songList[artistIndex].length - 1;
             
             player.src = "resources/music/" + songList[artistIndex][songListIndex] + ".mp3";
-            prevCover.src = "resources/music/" + songList[artistIndex][songListIndex - 1] + ".jpg";
-            currentCover.src = "resources/music/" + songList[artistIndex][songListIndex] + ".jpg";
-            nextCover.src = "resources/music/" + songList[artistIndex][songListIndex + 1] + ".jpg";
+            prevSongCover.src = "resources/music/" + songList[artistIndex][songListIndex - 1] + ".jpg";
+            currentSongCover.src = "resources/music/" + songList[artistIndex][songListIndex] + ".jpg";
+            nextSongCover.src = "resources/music/" + songList[artistIndex][songListIndex + 1] + ".jpg";
             player.load();
 
             musicStatus.textContent = "Selected: ";
             currentMusic.textContent = songList[artistIndex][songListIndex];
-            playButton.textContent = "⏯︎";
+            playButton.textContent = "Play";
         }
 
         function fadeIn() {
             clearInterval(playInterval);
 
             playButton.disabled = true;
-            nextButton.disabled = true;
-            prevButton.disabled = true;
+            nextSongButton.disabled = true;
+            prevSongButton.disabled = true;
 
             player.volume = 0;
 
@@ -144,8 +152,8 @@
                 if (player.volume >= 0.75) {
                     clearInterval(playInterval);
                     playButton.disabled = false;
-                    nextButton.disabled = false;
-                    prevButton.disabled = false;
+                    nextSongButton.disabled = false;
+                    prevSongButton.disabled = false;
                 } else {
                     player.volume += 0.05;
                 }
@@ -156,8 +164,8 @@
             clearInterval(playInterval);
 
             playButton.disabled = true;
-            nextButton.disabled = true;
-            prevButton.disabled = true;
+            nextSongButton.disabled = true;
+            prevSongButton.disabled = true;
 
             player.volume = 0.5;
 
@@ -166,8 +174,8 @@
                     clearInterval(playInterval);
                     player.pause();
                     playButton.disabled = false;
-                    nextButton.disabled = false;
-                    prevButton.disabled = false;
+                    nextSongButton.disabled = false;
+                    prevSongButton.disabled = false;
                 } else {
                     player.volume -= 0.05;
                 }
@@ -180,15 +188,15 @@
 
             musicStatus.textContent = "Currently Playing: ";
             currentMusic.textContent = songList[artistIndex][songListIndex]; 
-            playButton.textContent = "⏸️";
+            playButton.textContent = "Pause";
         }
 
         function pauseMusic() {
             fadeOut();
 
-            musicStatus.textContent = "Music paused.";
-            currentMusic.textContent = "";
-            playButton.textContent = "⏯︎";
+            musicStatus.textContent = "Music Paused.";
+            currentMusic.textContent = songList[artistIndex][songListIndex]; 
+            playButton.textContent = "Play";
         }
 
         function togglePlay() {
@@ -196,9 +204,16 @@
             else pauseMusic();
         }
 
-        function switchArtist() {
+        function nextArtist() {
             if (artistIndex < songList.length - 1) artistIndex += 1;
             else artistIndex = 0;
+            prevSong();
+            nextSong();
+        }
+
+        function prevArtist() {
+            if (artistIndex > 0) artistIndex -= 1;
+            else artistIndex = songList.length - 1;
             prevSong();
             nextSong();
         }
@@ -208,9 +223,10 @@
         /*---------------------- Main ----------------------*/
 
         playButton.addEventListener('click', togglePlay);
-        nextButton.addEventListener('click', nextSong);
-        prevButton.addEventListener('click', prevSong);
-        switchButton.addEventListener('click', switchArtist);
+        nextSongButton.addEventListener('click', nextSong);
+        prevSongButton.addEventListener('click', prevSong);
+        nextArtistButton.addEventListener('click', nextArtist);
+        prevArtistButton.addEventListener('click', prevArtist);
         
         /*---------------------- Main ----------------------*/
         /*--------------------------------------------------*/
