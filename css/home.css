@@ -1,0 +1,9 @@
+#welcome {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+section {
+    width: calc(50% - var(--spacing-lg) * 2);
+}
