@@ -1,15 +1,16 @@
+/* =========================================
+Section: Home
+========================================= */
+
 #hero {
     text-align: center;
-    margin-bottom: var(--spacing-lg);
+    padding: 2rem 1rem;
+    background: var(--secondary-color);
+    border-radius: var(--border-radius);
 }
 
-#hero h2 {
-    font-size: 1.75rem;
-    margin-bottom: var(--spacing-sm);
-    color: var(--primary-color);
-}
-
-#hero p {
-    font-size: var(--font-size-lg);
-    color: var(--text-color-dark);
+#hero img {
+    max-width: 200px;
+    border-radius: 50%;
+    margin-top: 1rem;
 }
